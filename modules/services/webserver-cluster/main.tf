@@ -147,10 +147,10 @@ resource "aws_lb_listener_rule" "asg" {
 }
 
 resource "aws_lb_target_group" "asg" {
-  name     = "${var.cluster_name}-asg"
-  port     = var.port
-  protocol = "HTTP"
-  vpc_id   = data.aws_vpc.default.id
+  name_prefix = "ws-asg"
+  port        = var.port
+  protocol    = "HTTP"
+  vpc_id      = data.aws_vpc.default.id
   health_check {
     path                = "/"
     protocol            = "HTTP"

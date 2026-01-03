@@ -1,3 +1,14 @@
+terraform {
+  backend "s3" {
+    bucket = "oleksii-terraform-state-bucket"
+    key    = "prod/services/data-stores/pg/terraform.tfstate"
+    region = "us-east-2"
+    profile = "default"
+    dynamodb_table = "terraform-locks"
+    encrypt = true
+  }
+}
+
 provider "aws" {
   region = "us-east-2"
 }
