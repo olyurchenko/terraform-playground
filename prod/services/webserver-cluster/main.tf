@@ -11,6 +11,25 @@ data "terraform_remote_state" "db" {
   }
 }
 
+
+resource "aws_autoscaling_schedule" "scale_out_during_business_hours" {
+  scheduled_action_name = "scale-out-during-business-hours"
+  autoscaling_group_name = module.webserver-cluster.autoscaling_group_name
+  min_size = 2
+  max_size = 10
+  desired_capacity = 10
+  recurrence = "0 9 * * *"
+}
+
+resource "aws_autoscaling_schedule" "scale_in_at_night" {
+  scheduled_action_name = "scale-in-at-night"
+  autoscaling_group_name = module.webserver-cluster.autoscaling_group_name
+  min_size = 2
+  max_size = 10
+  desired_capacity = 2
+  recurrence = "0 17 * * *"
+}
+
 module "webserver-cluster" {
   source = "../../../modules/services/webserver-cluster"
   region = var.region

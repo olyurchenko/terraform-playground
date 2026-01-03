@@ -14,7 +14,7 @@ provider "aws" {
 }
 
 module "db" {
-  source = "../../../modules/services/data-stores/pg"
+  source = "../../../../modules/services/data-stores/pg"
   cluster_name = "prod"
   environment = "prod"
   db_remote_state_bucket = "oleksii-terraform-state-bucket"
