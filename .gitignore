@@ -3,5 +3,4 @@
 *.tfstate.backup
 .env
 node_modules
-package-lock.json
 
