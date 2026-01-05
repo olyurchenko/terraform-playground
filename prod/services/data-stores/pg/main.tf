@@ -24,6 +24,7 @@ module "db" {
   db_password = jsondecode(data.aws_secretsmanager_secret_version.db_password.secret_string)["password"]
 }
 
+
 # trigger release test
 
 
